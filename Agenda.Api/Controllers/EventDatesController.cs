@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Agenda.Domain.Entities;
+using Agenda.Domain.Interfaces;
 
 namespace Agenda.Api.Controllers
 {
@@ -7,7 +8,12 @@ namespace Agenda.Api.Controllers
     [Route("api/[controller]")]
     public class EventDatesController : ControllerBase
     {
-        public EventDatesController() { }
+        private readonly IEventDateRepository eventDateRepository;
+        
+        public EventDatesController(IEventDateRepository eventDateRepository) 
+        { 
+            this.eventDateRepository = eventDateRepository;
+        }
 
         [HttpGet]
         public ActionResult<EventDate> Get() 

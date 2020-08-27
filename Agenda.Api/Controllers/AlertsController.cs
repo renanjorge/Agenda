@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Agenda.Domain.Entities;
+using Agenda.Domain.Interfaces;
 
 namespace Agenda.Api.Controllers
 {
@@ -7,7 +8,12 @@ namespace Agenda.Api.Controllers
     [Route("api/[controller]")]
     public class AlertsController : ControllerBase
     {
-        public AlertsController() { }
+        private readonly IAlertRepository alertRepository;
+
+        public AlertsController(IAlertRepository alertRepository)
+        { 
+            this.alertRepository = alertRepository;
+        }
 
         [HttpGet]
         public ActionResult<Alert> Get()
