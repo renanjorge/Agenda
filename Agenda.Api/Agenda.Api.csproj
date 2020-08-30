@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Agenda.Domain\Agenda.Domain.csproj" />
     <ProjectReference Include="..\Agenda.Repository\Agenda.Repository.csproj" />
+    <ProjectReference Include="..\Agenda.Infrastructure\Agenda.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -17,7 +17,8 @@ namespace Agenda.Repository.Mappers
             
             Map(x => x.AllDay).Not.Nullable();
 
-            References(x => x.Event).Not.Nullable()
+            References(x => x.Event).Column("IdEvent")
+                                    .Not.Nullable()
                                     .Cascade.All();
         }
     }

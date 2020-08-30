@@ -18,7 +18,7 @@ namespace Agenda.Api.Controllers
         [HttpGet]
         public ActionResult<Event> Get()
         {
-            var events = new Event();
+            var events = eventRepository.GetAll();
 
             return Ok(events);
         }

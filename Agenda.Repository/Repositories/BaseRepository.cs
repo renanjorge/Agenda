@@ -1,10 +1,19 @@
 using System.Collections.Generic;
+using System.Linq;
 using Agenda.Domain.Interfaces;
+using NHibernate;
 
 namespace Agenda.Repository.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
+        private readonly ISession Session;
+
+        public BaseRepository(ISession session) 
+        {
+            Session = session;
+        }
+
         public void Delete(int id)
         {
             throw new System.NotImplementedException();
@@ -12,7 +21,7 @@ namespace Agenda.Repository.Repositories
 
         public IEnumerable<TEntity> GetAll()
         {
-            throw new System.NotImplementedException();
+            return Session.Query<TEntity>().ToList();
         }
 
         public TEntity GetById(int id)

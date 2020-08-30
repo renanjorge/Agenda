@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Agenda.Domain.Entities;
 using Agenda.Domain.Interfaces;
+using NHibernate;
+using System.Linq;
 
 namespace Agenda.Api.Controllers
 {
@@ -18,7 +20,8 @@ namespace Agenda.Api.Controllers
         [HttpGet]
         public ActionResult<EventType> Get() 
         {
-            return Ok(200);
+            var eventTypes = eventTypeRepository.GetAll();
+            return Ok(eventTypes);
         }
     }
 }

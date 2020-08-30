@@ -18,7 +18,8 @@ namespace Agenda.Repository.Mappers
             Map(x => x.Note).Length(500)
                             .Not.Nullable();
             
-            References(x => x.EventType).Not.Nullable()
+            References(x => x.EventType).Column("IdEventType")
+                                        .Not.Nullable()
                                         .Not.Cascade.Delete()
                                         .Cascade.SaveUpdate();
         }

@@ -13,7 +13,8 @@ namespace Agenda.Repository.Mappers
             Map(x => x.DateHour).CustomSqlType("DateTime2")
                                 .Not.Nullable();
 
-            References(x => x.EventDate).Not.Nullable()
+            References(x => x.EventDate).Column("IdEventDate")
+                                        .Not.Nullable()
                                         .Cascade.All();
 
         }
