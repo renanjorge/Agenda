@@ -1,47 +1,87 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Agenda.Domain.Interfaces;
+using Agenda.Domain.Interfaces.Repository;
 using NHibernate;
 
 namespace Agenda.Repository.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        private readonly ISession Session;
+        protected readonly ISession session;
 
         public BaseRepository(ISession session) 
         {
-            Session = session;
+            this.session = session;
         }
 
-        public void Delete(int id)
+        public IEnumerable<TEntity> FindAll()
         {
-            throw new System.NotImplementedException();
+            var entities = session.Query<TEntity>().ToList();
+            return entities;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public TEntity FindById(int id)
         {
-            return Session.Query<TEntity>().ToList();
-        }
-
-        public TEntity GetById(int id)
-        {
-            throw new System.NotImplementedException();
+            var entities = session.Get<TEntity>(id);
+            return entities;
         }
 
         public void Save(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            using(var transaction = session.BeginTransaction())
+            {
+                try 
+                {
+                    session.Save(entity);
+                    transaction.Commit();
+                } catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new System.ArgumentException(ex.Message);
+                }
+            } 
         }
 
         public void Update(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            using(var transaction = session.BeginTransaction())
+            {
+                try 
+                {
+                    session.Update(entity);
+                    transaction.Commit();
+                } catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new System.ArgumentException(ex.Message);
+                }
+            } 
+        }
+        
+        public void Delete(int id)
+        {
+            using(var transaction = session.BeginTransaction())
+            {      
+                try 
+                {
+                    session.CreateQuery($@"delete {typeof(TEntity)} where id = {id}")
+                       .ExecuteUpdate();
+
+                    transaction.Commit();
+                } catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new System.ArgumentException(ex.Message);
+                }  
+            } 
         }
 
+        public ITransaction BeginTransaction() => session.BeginTransaction();
+        
         public void Dispose() 
         {
-            throw new System.NotImplementedException();
+            session.Dispose();
         }
     }
 }

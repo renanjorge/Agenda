@@ -1,5 +1,5 @@
 using Agenda.Domain.Entities;
-using Agenda.Domain.Interfaces;
+using Agenda.Domain.Interfaces.Repository;
 using NHibernate;
 
 namespace Agenda.Repository.Repositories

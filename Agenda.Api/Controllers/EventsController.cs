@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Agenda.Domain.Entities;
-using Agenda.Domain.Interfaces;
+using System;
+using Agenda.Domain.Interfaces.Service;
+using Agenda.Domain.DTO;
 
 namespace Agenda.Api.Controllers
 {
@@ -8,19 +10,66 @@ namespace Agenda.Api.Controllers
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
-        private readonly IEventRepository eventRepository;
+        private readonly IEventService eventService;
 
-        public EventsController(IEventRepository eventRepository) 
+        public EventsController(IEventService eventService) 
         {
-            this.eventRepository = eventRepository;
+            this.eventService = eventService;
         }
 
-        [HttpGet]
-        public ActionResult<Event> Get()
+        [HttpGet("{id}/event-dates")]
+        public ActionResult<EventDTO> ShowEventDatesBy(int id)
         {
-            var events = eventRepository.GetAll();
+            var eventDTO = eventService.FindEventDatesBy(id);
 
-            return Ok(events);
+            if (eventDTO == null)
+                return NotFound();
+
+            return Ok(eventDTO);
+        }
+
+        [HttpGet()]
+        public ActionResult ShowEventsBy([FromQuery] DateTime beginning, [FromQuery] DateTime ending)
+        {
+             var eventsDTO = eventService.FindEventsBy(beginning, ending);
+
+            if (eventsDTO == null)
+                return NotFound();
+
+            return Ok(eventsDTO);
+        }
+
+        [HttpPost()]
+        public ActionResult Create(EventDTO eventDTO)
+        {
+            eventDTO = eventService.SaveEvent(eventDTO);
+
+            if (eventDTO == null)
+                return BadRequest();
+
+            return Created("api/events", eventDTO);
+        }
+        
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, Event oneEvent)
+        {
+            oneEvent.Id = id;
+            eventService.Update(oneEvent);
+
+            return Ok(200);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try 
+            {
+                eventService.Delete(id);
+                return Ok(200);
+            } catch(Exception ) 
+            {
+                return BadRequest();
+            }
         }
     }
 }

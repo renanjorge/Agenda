@@ -7,7 +7,8 @@ namespace Agenda.Repository.Mappers
     {
         public EventDateMap()
         {
-            Id(x => x.Id);
+            Table("EventDate");
+            Id(x => x.Id).GeneratedBy.Increment();
 
             Map(x => x.Beginning).CustomSqlType("DateTime2")
                                  .Not.Nullable();
@@ -20,6 +21,10 @@ namespace Agenda.Repository.Mappers
             References(x => x.Event).Column("IdEvent")
                                     .Not.Nullable()
                                     .Cascade.All();
+
+            HasMany<EventDate>(x => x.Alerts).Cascade.SaveUpdate()
+                                             .Inverse()
+                                             .AsBag();
         }
     }
 }

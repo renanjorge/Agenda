@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Agenda.Domain.Interfaces;
+using Agenda.Domain.Interfaces.Repository;
+using Agenda.Domain.Interfaces.Service;
+using Agenda.Domain.Services;
 using Agenda.Repository.Repositories;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -44,6 +46,10 @@ namespace Agenda.Api
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<IEventTypeRepository, EventTypeRepository>();
             services.AddScoped<IEventDateRepository, EventDateRepository>();
+
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IEventTypeService, EventTypeService>();
+            services.AddScoped<IAlertService, AlertService>();
 
             services.AddControllers();
         }

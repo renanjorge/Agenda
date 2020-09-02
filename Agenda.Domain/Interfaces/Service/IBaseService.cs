@@ -1,17 +1,13 @@
 using System.Collections.Generic;
-using NHibernate;
 
-namespace Agenda.Domain.Interfaces.Repository 
+namespace Agenda.Domain.Interfaces.Service 
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseService<TEntity> where TEntity : class
     {
         void Save(TEntity entity);
         TEntity FindById(int id);
         IEnumerable<TEntity> FindAll();
         void Update(TEntity entity);
         void Delete(int id);
-        ITransaction BeginTransaction();
-        
-        void Dispose();
     }
 }

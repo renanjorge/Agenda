@@ -1,11 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Agenda.Domain.Entities;
-using Agenda.Domain.Interfaces;
+using Agenda.Domain.Interfaces.Repository;
 using NHibernate;
+using NHibernate.Transform;
 
 namespace Agenda.Repository.Repositories
 {
     public class EventRepository : BaseRepository<Event>, IEventRepository 
     {
-        public EventRepository(ISession session) : base(session) {}
+        public EventRepository(ISession session) : base(session) { }
+
+        public IEnumerable<Event> FindEventsBy(DateTime beginning, DateTime ending)
+        {
+            return session.QueryOver<Event>()
+                          .JoinQueryOver<EventDate>(s => s.EventDates)
+                          .Where(s => s.Beginning >= beginning).And(s => s.Ending <= ending)
+                          .List();
+        }
     }
 }

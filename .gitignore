@@ -436,3 +436,6 @@ $RECYCLE.BIN/
 #CONFIG
 *appsettings.json
 *appsettings.Development.json
+
+#REST CLIENT HTTP
+*.http

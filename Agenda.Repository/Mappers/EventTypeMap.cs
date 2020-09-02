@@ -7,7 +7,9 @@ namespace Agenda.Repository.Mappers
     {
         public EventTypeMap()
         {
-            Id(x => x.Id);
+            Table("EventType");
+            
+            Id(x => x.Id).GeneratedBy.Increment();
 
             Map(x => x.Name).Length(50)
                             .Not.Nullable();

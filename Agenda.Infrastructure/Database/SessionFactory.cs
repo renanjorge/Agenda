@@ -1,4 +1,3 @@
-using System.Reflection;
 using Agenda.Repository.Mappers;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;

@@ -8,15 +8,12 @@ namespace Agenda.Repository.Mappers
         public AlertMap()
         {
             Table("Alert");
-            Id(x => x.Id);
+            Id(x => x.Id).GeneratedBy.Increment();
 
             Map(x => x.DateHour).CustomSqlType("DateTime2")
                                 .Not.Nullable();
 
-            References(x => x.EventDate).Column("IdEventDate")
-                                        .Not.Nullable()
-                                        .Cascade.All();
-
+            Map(x => x.IdEventDate).Column("IdEventDate").Not.Nullable();
         }
     }
 }
