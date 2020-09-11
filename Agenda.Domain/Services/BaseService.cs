@@ -6,7 +6,7 @@ namespace Agenda.Domain.Services
 {
     public class BaseService<TEntity> : IBaseService<TEntity>  where TEntity : class
     {
-        private IBaseRepository<TEntity> baseRepository;
+        private readonly IBaseRepository<TEntity> baseRepository;
 
         public BaseService(IBaseRepository<TEntity> baseRepository) 
         {

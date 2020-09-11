@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Agenda.Domain.Entities;
 
 namespace Agenda.Domain.Interfaces.Repository 

@@ -10,8 +10,6 @@ namespace Agenda.Domain.Interfaces.Repository
         IEnumerable<TEntity> FindAll();
         void Update(TEntity entity);
         void Delete(int id);
-        ITransaction BeginTransaction();
-        
-        void Dispose();
+        ITransaction BeginTransaction();       
     }
 }

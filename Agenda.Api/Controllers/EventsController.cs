@@ -18,7 +18,7 @@ namespace Agenda.Api.Controllers
         }
 
         [HttpGet("{id}/event-dates")]
-        public ActionResult<EventDTO> ShowEventDatesBy(int id)
+        public ActionResult<EventDto> ShowEventDatesBy(int id)
         {
             var eventDTO = eventService.FindEventDatesBy(id);
 
@@ -40,7 +40,7 @@ namespace Agenda.Api.Controllers
         }
 
         [HttpPost()]
-        public ActionResult Create(EventDTO eventDTO)
+        public ActionResult Create(EventDto eventDTO)
         {
             eventDTO = eventService.SaveEvent(eventDTO);
 

@@ -6,7 +6,6 @@ namespace Agenda.Domain.Services
 {
     public class EventTypeService : BaseService<EventType>, IEventTypeService
     {
-        private IEventTypeRepository eventTypeRepository;
         public EventTypeService(IEventTypeRepository eventTypeRepository) : base(eventTypeRepository) { }
     }
 }

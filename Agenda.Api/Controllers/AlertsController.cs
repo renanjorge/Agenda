@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Agenda.Domain.Entities;
-using System;
 using Agenda.Domain.Interfaces.Service;
 
 namespace Agenda.Api.Controllers

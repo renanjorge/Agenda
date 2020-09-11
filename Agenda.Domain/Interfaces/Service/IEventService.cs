@@ -7,8 +7,8 @@ namespace Agenda.Domain.Interfaces.Service
 {
     public interface IEventService : IBaseService<Event>
     {
-        EventDTO SaveEvent(EventDTO eventDTO);
-        EventDTO FindEventDatesBy(int id);
-        IEnumerable<EventDTO> FindEventsBy(DateTime beginning, DateTime ending);
+        EventDto SaveEvent(EventDto eventDTO);
+        EventDto FindEventDatesBy(int id);
+        IEnumerable<EventDto> FindEventsBy(DateTime beginning, DateTime ending);
     }
 }

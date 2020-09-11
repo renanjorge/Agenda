@@ -5,9 +5,9 @@ namespace Agenda.Domain.Map
 {
     public static class EventDateMap 
     {
-        public static EventDateDTO ToDTO(this EventDate entity)
+        public static EventDateDto ToDTO(this EventDate entity)
         {
-            return new EventDateDTO
+            return new EventDateDto
             {
                 Id = entity.Id,
                 Beginning = entity.Beginning,
@@ -16,7 +16,7 @@ namespace Agenda.Domain.Map
             };
         }
 
-        public static EventDate ToEntity(this EventDateDTO dto)
+        public static EventDate ToEntity(this EventDateDto dto)
         {
             return new EventDate
             {

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Agenda.Domain.Entities;
 using Agenda.Domain.Interfaces.Repository;
 using NHibernate;

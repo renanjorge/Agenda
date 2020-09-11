@@ -6,21 +6,21 @@ namespace Agenda.Domain.Map
 {
     public static class EventMap 
     {
-        public static EventDTO ToDTO(this Event entity)
+        public static EventDto ToDTO(this Event entity)
         {
-            return new EventDTO
+            return new EventDto
             {
                 Id = entity.Id,
                 Name = entity.Name,
                 Place = entity.Place,
                 Note = entity.Note,
-                EventType = new EventTypeDTO 
+                EventType = new EventTypeDto
                 {
                     Id = entity.EventType.Id,
                     Name = entity.EventType.Name,
                     HexColor = entity.EventType.HexColor
                 },
-                EventDates = entity.EventDates.Select(x => new EventDateDTO 
+                EventDates = entity.EventDates.Select(x => new EventDateDto 
                 {
                     Id = x.Id,
                     Beginning = x.Beginning,
@@ -30,7 +30,7 @@ namespace Agenda.Domain.Map
             };
         }
 
-        public static Event ToEntity(this EventDTO dto)
+        public static Event ToEntity(this EventDto dto)
         {
             return new Event
             {

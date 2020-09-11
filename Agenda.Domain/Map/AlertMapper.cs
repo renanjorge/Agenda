@@ -1,4 +1,3 @@
-using System.Linq;
 using Agenda.Domain.DTO;
 using Agenda.Domain.Entities;
 
@@ -6,16 +5,16 @@ namespace Agenda.Domain.Map
 {
     public static class AlertMap 
     {
-        public static AlertDTO ToDTO(this Alert entity)
+        public static AlertDto ToDTO(this Alert entity)
         {
-            return new AlertDTO
+            return new AlertDto
             {
                 Id = entity.Id,
                 DateHour = entity.DateHour
             };
         }
 
-        public static Alert ToEntity(this AlertDTO dto)
+        public static Alert ToEntity(this AlertDto dto)
         {
             return new Alert
             {

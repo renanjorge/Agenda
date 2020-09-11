@@ -15,19 +15,19 @@ namespace Agenda.Repository.Repositories
             this.session = session;
         }
 
-        public IEnumerable<TEntity> FindAll()
+        public virtual IEnumerable<TEntity> FindAll()
         {
             var entities = session.Query<TEntity>().ToList();
             return entities;
         }
 
-        public TEntity FindById(int id)
+        public virtual TEntity FindById(int id)
         {
             var entities = session.Get<TEntity>(id);
             return entities;
         }
 
-        public void Save(TEntity entity)
+        public virtual void Save(TEntity entity)
         {
             using(var transaction = session.BeginTransaction())
             {
@@ -43,7 +43,7 @@ namespace Agenda.Repository.Repositories
             } 
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             using(var transaction = session.BeginTransaction())
             {
@@ -59,7 +59,7 @@ namespace Agenda.Repository.Repositories
             } 
         }
         
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             using(var transaction = session.BeginTransaction())
             {      
@@ -78,10 +78,5 @@ namespace Agenda.Repository.Repositories
         }
 
         public ITransaction BeginTransaction() => session.BeginTransaction();
-        
-        public void Dispose() 
-        {
-            session.Dispose();
-        }
     }
 }

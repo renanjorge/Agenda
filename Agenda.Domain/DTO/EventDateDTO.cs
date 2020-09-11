@@ -2,7 +2,7 @@ using System;
 
 namespace Agenda.Domain.DTO 
 {
-    public class EventDateDTO 
+    public class EventDateDto 
     {
         public int Id { get; set; }
         public DateTime Beginning { get; set; }

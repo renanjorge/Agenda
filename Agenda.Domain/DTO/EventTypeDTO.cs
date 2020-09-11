@@ -1,6 +1,6 @@
 namespace Agenda.Domain.DTO 
 {
-    public class EventTypeDTO 
+    public class EventTypeDto 
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Agenda.Domain.Entities;
 using Agenda.Domain.Interfaces.Repository;
 using NHibernate;
-using NHibernate.Transform;
 
 namespace Agenda.Repository.Repositories
 {

@@ -11,8 +11,8 @@ namespace Agenda.Domain.Services
 {
     public class EventService : BaseService<Event>, IEventService
     {
-        private IEventRepository eventRepository;
-        private IEventDateRepository eventDateRepository;
+        private readonly IEventRepository eventRepository;
+        private readonly IEventDateRepository eventDateRepository;
 
         public EventService(IEventRepository eventRepository,
                             IEventDateRepository eventDateRepository) : base(eventRepository)
@@ -21,7 +21,7 @@ namespace Agenda.Domain.Services
             this.eventDateRepository = eventDateRepository;
         }
 
-        public EventDTO SaveEvent(EventDTO eventDTO)
+        public EventDto SaveEvent(EventDto eventDTO)
         {
             var oneEvent = eventDTO.ToEntity();
             var eventDates = eventDTO.EventDates.Select(x => x.ToEntity());
@@ -53,7 +53,7 @@ namespace Agenda.Domain.Services
             return eventDTO; 
         }
 
-        public EventDTO FindEventDatesBy(int id)
+        public EventDto FindEventDatesBy(int id)
         {
             var oneEvent = eventRepository.FindById(id);
 
@@ -66,7 +66,7 @@ namespace Agenda.Domain.Services
             return null;
         }
 
-        public IEnumerable<EventDTO> FindEventsBy(DateTime beginning, DateTime ending)
+        public IEnumerable<EventDto> FindEventsBy(DateTime beginning, DateTime ending)
         {
             var events = eventRepository.FindEventsBy(beginning, ending);
 

@@ -439,3 +439,8 @@ $RECYCLE.BIN/
 
 #REST CLIENT HTTP
 *.http
+
+#SONARQUBE
+.sonarqube
+.sonarqube/conf
+.sonarqube/out
